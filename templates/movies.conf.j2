@@ -1,0 +1,26 @@
+!=== {{ switchname }} ===!
+
+!--- Movie config ---!
+enable
+configure terminal
+hostname {{ moviename }}
+
+!--- MGMT ---!
+rating {{ rating }}
+reviewer  {{ reviewer }}
+comment {{ comment }}
+exit
+
+!--- SSH ---!
+management ssh
+  idle-timeout 0
+  authentication mode keyboard-interactive
+  server-port 22
+  no fips restrictions
+  no hostkey client strict-checking
+  no shutdown
+  login timeout 120
+  log-level info
+exit
+exit
+write memory
